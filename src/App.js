@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import FormComponent from "./components/Form";
-import WordContainer from "./components/Word/WordContainer";
-
+import WordContainer from "./components/Word/WordList";
 const GlobalStyle = createGlobalStyle`
 body{
   background-color: #f9ca24;

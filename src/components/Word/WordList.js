@@ -9,13 +9,14 @@ min-height: 280px;
 font-family: 'Roboto', sans-serif;
 font-weight: 600;
 `
-function WordContainer() {
+function WordList() {
     return (
         <>
             <Container>
+                
             </Container>
         </>
     )
 }
 
-export default WordContainer
+export default WordList

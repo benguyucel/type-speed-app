@@ -1,3 +1,5 @@
+import { Modal } from "antd";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
 import Footer from "./components/Footer";
@@ -25,15 +27,14 @@ padding: 10px;
 
 `
 const App = () => {
-  const { isFinished } = useSelector(state => state.wordSlice)
   return (
     <>
       <AppContainer>
         <WordList />
         <FormComponent />
         <Footer />
-        {isFinished && (<ResultModal />)}
       </AppContainer>
+      <ResultModal />
       <GlobalStyle />
     </>
 

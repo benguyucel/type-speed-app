@@ -1,20 +1,61 @@
+import { nanoid } from '@reduxjs/toolkit';
+import { Button, Select } from 'antd';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { rety } from '../../redux/slice/wordSlice'
+import { getObjectKeys } from '../../data/words';
+import { changeLang, rety, setFinished, setStartGame } from '../../redux/slice/wordSlice'
 import Timer from '../Timer'
 const Container = styled.div`
 display: flex;
 justify-content: flex-end;
-margin-right: 10%;
+align-items:center;
+gap: 7px;
+margin-right: 4%;
 `
+
+const { Option } = Select;
+
+
 function Footer() {
-    const { wordLang } = useSelector(state => state.wordSlice)
     const dispatch = useDispatch()
+    const { wordLang, isStartGame } = useSelector(state => state.wordSlice)
+    const handleChange = (value) => {
+        dispatch(changeLang(value.label))
+        dispatch(rety(value.label))
+        dispatch(setStartGame(false))
+        dispatch(setFinished(false))
+    };
+    const handleRety = () => {
+        dispatch(rety(wordLang))
+        dispatch(setStartGame(false))
+        dispatch(setFinished(false))
+    }
     return (
         <Container>
             <Timer />
-            <button onClick={() => dispatch(rety(wordLang))}>Rety</button>
+            <Button onClick={handleRety} type="primary" >Rety</Button>
+            <Select
+                disabled={isStartGame}
+                labelInValue
+                defaultValue={{
+                    value: wordLang,
+                    label: wordLang,
+                }}
+                style={{
+                    textTransform: 'capitalize',
+                    minWidth: 100
+                }}
+                onChange={handleChange}
+            >
+                {getObjectKeys().map(item => (
+                    <Option style={{
+                        textTransform: 'capitalize'
+                    }} key={nanoid()} value={item}>{item}</Option>
+                ))}
+
+
+            </Select>
         </Container>
     )
 }

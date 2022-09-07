@@ -6,8 +6,6 @@ overflow: hidden;
 text-rendering: optimizeSpeed;
 font-size: 20px;
 `
-
-
 function Word({ word, current, isCorrect }) {
   return (
     <>

@@ -1,4 +1,4 @@
-export const wordsData = {
+const wordsData = {
     "turkish": [
         "olarak",
         "ben",
@@ -419,7 +419,6 @@ export const wordsData = {
         "i",
         "alan",
         "gerisi",
-        "TRUE",
         "yetenekli",
         "kiloluk",
         "bitti",
@@ -909,7 +908,7 @@ export const wordsData = {
         "çözüm",
         "mıknatıs",
         "gümüş",
-        "teşekkür ederim",
+        "teşekkürederim",
         "şube",
         "maç",
         "sonek",
@@ -926,7 +925,7 @@ export const wordsData = {
         "deneyim",
         "puan",
         "elma",
-        "satın aldı",
+        "satınaldı",
         "açtı",
         "zift",
         "ceket",
@@ -4006,10 +4005,15 @@ export const wordsData = {
     ]
 }
 
-export const getWords = (lang = "turkish", size = 40) => {
-    const words = wordsData[lang].sort(() => Math.random() - .618)
-    words.length = size;
-    return [...words]
+export const getWords = (lang = "turkish", size = 50) => {
+    const wordsTrim = wordsData[lang].map(item => { return item.trim() })
+    const words = [...wordsTrim]
+    const newWord = words.sort(() => Math.random() - .618)
+    newWord.length = size;
+    return [...newWord]
 }
 
+export const getObjectKeys = () => {
+    return [...Object.keys(wordsData)]
+}
 

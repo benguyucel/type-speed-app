@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import React, { useState } from 'react'
+import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Word from './Word'
@@ -25,4 +25,4 @@ function WordList() {
     )
 }
 
-export default WordList
+export default memo(WordList)

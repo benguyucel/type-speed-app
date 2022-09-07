@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { wordsData } from '../../data/words'
+import { getWords } from '../../data/words'
 export const wordSlice = createSlice({
     name: "words",
     initialState: {
-        words: [...wordsData.turkish].sort(() => Math.random() * - 0 * 5),
+        words: getWords(),
         activeIndex: 0,
         correctWords: [],
         isFinished: false,
-        isStartGame: false
+        isStartGame: false,
+        wordLang: "turkish"
     }, reducers: {
         reLoadWord: (state, action) => {
             // state.words = words.Turkish.sort(Math.random() * -0.5)
@@ -23,11 +24,15 @@ export const wordSlice = createSlice({
         },
         setStartGame: (state, action) => {
             state.isStartGame = true
+        },
+        rety: (state, action) => {
+            state.words = getWords(action.payload)
         }
+
     }
 })
 
-export const { reLoadWord, setActiveIndex, setCorrectWords, setFinished,setStartGame } = wordSlice.actions
+export const { reLoadWord, setActiveIndex, setCorrectWords, setFinished, setStartGame,rety } = wordSlice.actions
 export const countCorrectWords = state => state.wordSlice.correctWords.filter(item => item === true).length
 export const countInCorrectWords = state => state.wordSlice.correctWords.filter(item => item === false).length
 export default wordSlice.reducer

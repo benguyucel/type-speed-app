@@ -1,5 +1,5 @@
 import { Form, Input, Item } from 'antd'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveIndex, setCorrectWords, setStartGame } from '../../redux/slice/wordSlice'
 
@@ -9,15 +9,20 @@ function FormComponent() {
     const [userInput, setUserInput] = useState("")
     const handleChange = (value) => {
         if (value.endsWith(' ')) {
+
             dispatch(setActiveIndex()); setUserInput('')
             words[activeIndex] === userInput ? dispatch(setCorrectWords(true)) : dispatch(setCorrectWords(false))
+
+
         } else {
+            words[activeIndex].includes(value) == false && console.log("hatalı kelime", value)
             setUserInput(value)
         }
     }
     return (
         <Form.Item style={{ marginTop: 10 }}>
-            <Input onKeyUp={() => dispatch(setStartGame())} disabled={isFinished} style={{ borderRadius: 5 }} value={userInput} onChange={(e) => handleChange(e.target.value)} />
+            <Input onKeyUp={() => dispatch(setStartGame())} disabled={isFinished}
+                style={{ borderRadius: 5 }} value={userInput} onChange={(e) => handleChange(e.target.value)} />
         </Form.Item>
     )
 }

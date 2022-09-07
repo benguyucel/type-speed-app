@@ -1,12 +1,18 @@
+import { useSelector } from "react-redux";
 import styled, { createGlobalStyle } from "styled-components";
+import Footer from "./components/Footer";
 import FormComponent from "./components/Form";
-import WordContainer from "./components/Word/WordList";
+import ResultModal from "./components/ResultModal";
+import WordList from "./components/Word/WordList";
 const GlobalStyle = createGlobalStyle`
 body{
   background-color: #f9ca24;
   justify-content: center;
   align-items: center;
-
+}
+*{
+  padding: 0;
+  margin: 0;
 }
 `
 const AppContainer = styled.div`
@@ -19,11 +25,14 @@ padding: 10px;
 
 `
 const App = () => {
+  const { isFinished } = useSelector(state => state.wordSlice)
   return (
     <>
       <AppContainer>
-        <WordContainer />
+        <WordList />
         <FormComponent />
+        <Footer />
+        {isFinished && (<ResultModal />)}
       </AppContainer>
       <GlobalStyle />
     </>

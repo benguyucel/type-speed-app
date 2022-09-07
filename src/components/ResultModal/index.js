@@ -14,7 +14,7 @@ function ResultModal() {
 
     return (
 
-        <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Your Time is Up" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
             <p>Some contents...</p>
             <p>Some contents...</p>
             <p>Some contents...</p>

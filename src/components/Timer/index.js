@@ -16,17 +16,17 @@ color: #130f40;
 function Timer() {
     const { isStartGame } = useSelector(state => state.wordSlice)
     const dispatch = useDispatch();
-    const [timer, setTimer] = useState(3)
+    const [timer, setTimer] = useState(60)
     const countDown = () => {
         setTimeout(() => setTimer(prev => prev - 1), 1000)
     }
     useEffect(() => {
         if (isStartGame === true) timer !== 0 && countDown()
         timer === 0 && dispatch(setFinished())
-    }, [timer,isStartGame])
+    }, [timer, isStartGame])
 
     return (
-        <TimerContainer>{timer}</TimerContainer>
+        <TimerContainer>{timer === 60 ? "1:00" : timer < 10 ? `0${timer}` : timer}</TimerContainer>
     )
 }
 
